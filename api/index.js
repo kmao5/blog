@@ -18,7 +18,7 @@ const secret = 'asdkjfahs24kjow3w3yreury2ekrjsghlr'; // for jwt (login)
 
 // allows server to be accessible by other origins (browser domains)
 // also saves cookie as credentials
-app.use(cors({credentials: true, origin:'http://localhost:3000'})); 
+app.use(cors({credentials: true, origin:'https://blog-rouge-gamma-96.vercel.app/'})); 
 
 app.use(express.json()); // parse incoming requests with json payload
 app.use(cookieParser());
