@@ -18,8 +18,9 @@ export default function CreatePost() {
 
         e.preventDefault();
 
+
         // send fetch request to endpoint
-        const response = await fetch('http://localhost:4000/post', {
+        const response = await fetch('https://blog-api-kohl-pi.vercel.app//post', {
             method: 'POST',
             body: data,
             credentials: 'include',
