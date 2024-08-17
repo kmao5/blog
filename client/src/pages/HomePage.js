@@ -1,14 +1,12 @@
 import Post from "../Post";
 import { useEffect, useState } from "react";
-import PostPage from "./PostPage";
-import {Route, Routes} from "react-router-dom";
 
 export default function HomePage() {
     const [posts, setPosts] = useState([]);
 
     // GET is default so don't need to define function
     useEffect(() => {
-        fetch('https://blog-api-kohl-pi.vercel.app//post').then(response => {
+        fetch('http://localhost:4000/post').then(response => {
             response.json().then(posts => {
                 setPosts(posts);
             });

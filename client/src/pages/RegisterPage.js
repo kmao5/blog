@@ -8,7 +8,7 @@ export default function RegisterPage() {
         e.preventDefault(); // will not try to redirect from this page
 
         // send POST request
-       const response = await fetch('https://blog-api-kohl-pi.vercel.app//register', {
+       const response = await fetch('http://localhost:4000/register', {
             method: 'POST',
             body: JSON.stringify({username, password}),
             headers: {'Content-Type': 'application/json'},
