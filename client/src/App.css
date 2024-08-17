@@ -1,5 +1,6 @@
 *{
   box-sizing: border-box;
+  background-color: rgb(244, 224, 243);
 }
 
 a{
@@ -16,6 +17,7 @@ img{
   max-height: 100%;
   object-fit: cover;
   image-rendering: crisp-edges;
+  border-radius: 7px;
 }
 
 main{
@@ -39,19 +41,25 @@ header a{
 
 header a.logo{
   font-weight: bold;
-  font-size: 1.5rem;
+  font-family:fantasy;
+  font-size: 1.6rem;
 }
 
 header nav{
   display: flex;
-  gap: 15px;
+  gap: 20px;
+}
+
+.nav-headings {
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-weight: bold;
 }
 
 /* home page */
 div.post{
   display: grid;
   grid-template-columns: 1fr;
-  gap: 20px;
+  gap: 40px;
   margin-bottom: 30px;
 }
 @media screen and (min-width: 700px) {
@@ -62,7 +70,8 @@ div.post{
 
 div.post div.texts h2{
   margin: 0;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 div.post div.texts a{
@@ -86,6 +95,7 @@ div.post p.info a.author{
 div.post p.summary{
   margin: 10px 0;
   line-height: 1.4rem;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 /* login and register */
@@ -136,9 +146,11 @@ div.post-page a{
   text-decoration: underline;
 }
 
-div.post-page h1 {
+div.post-page h2 {
   text-align: center;
+  font-size: 1.8rem;
   margin: 10px 0 5px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 div.post-page time {
@@ -150,13 +162,16 @@ div.post-page time {
 
 div.post-page div.author {
   text-align: center;
+  margin-top: 5px;
   margin-bottom: 20px;
   font-size: 0.7rem;
   font-weight: bold;
 }
 
 div.post-page div.content p{
-  line-height: 1.6rem;
+  line-height: 1.8rem;
+  font-size: 1.2rem;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 div.edit-row{
@@ -165,7 +180,7 @@ div.edit-row{
 }
 
 div.post-page a.edit-button{
-  background-color: #333;
+  background-color: #624534;
   display: inline-flex;
   align-items: center;
   gap: 5px;
@@ -177,4 +192,20 @@ div.post-page a.edit-button{
 
 a svg {
   height: 20px;
+}
+
+div.delete-row{
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+div.post-page a.delete-button{
+  background-color: #624534;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #fff;
+  padding: 15px 30px;
+  text-decoration: none;
+  border-radius: 5px;
 }

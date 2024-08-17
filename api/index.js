@@ -217,6 +217,34 @@ app.put('/post', uploadMiddleware.single('file'), async (req, res) => {
     });
 });
 
+app.delete('/post/:id', async (request, response) => {
+    const {token} = request.cookies;
+    const {id} = request.params;
+
+    jwt.verify(token, secret, {}, async (err, info) => {
+        if(err) {
+            return response.status(401).json({error: 'Token verification failed'});
+        }
+
+        try {
+            const postDoc = await Post.findById(id);
+            if(!postDoc) {
+                return response.status(404).json({error: 'Post not found'});
+            }
+
+            const isAuthor = JSON.stringify(postDoc.author) === JSON.stringify(info.id);
+            if(!isAuthor) {
+                return response.status(403).json({error: "You are not authorized to delete this post"});
+            }
+
+            await Post.findByIdAndDelete(id);
+            response.json({message: 'Post deleted successfully'});
+        } catch (error) {
+            response.status(500).json({error: 'Error deleting post'});
+        }
+    });
+});
+
 app.listen(4000);
 
 // KX5hLzFSqjcVhuS2

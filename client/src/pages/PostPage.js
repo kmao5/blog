@@ -2,12 +2,14 @@ import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {format} from "date-fns"; // yarn lib
 import { UserContext } from "../UserContext";
-import {Link} from "react-router-dom";
+import {Link, Navigate} from "react-router-dom";
 
 export default function PostPage() {
     const {id} = useParams();
     const [postInfo, setPostInfo] = useState(null);
+    const [redirect, setRedirect] = useState(false);
     const {userInfo} = useContext(UserContext);
+    const [posts, setPosts] = useState([]);
 
     // grab info about the post when PostPage component is mounted
     useEffect(() => {
@@ -20,11 +22,41 @@ export default function PostPage() {
         });
     }, []);
 
+    // delete post
+    async function deletePost() {
+        const confirmed = window.confirm('Are you sure you want to delete this post?');
+        if (!confirmed) return;
+
+        try {
+            const response = await fetch(`http://localhost:4000/post/${id}`, {
+                method: 'DELETE',
+                credentials: 'include',
+            });
+
+            if (response.ok) {
+                setPosts(posts.filter(post => post._id !== id)); // delete curr post from posts
+                setRedirect(true); // go back to homepage
+            } else {
+                const errorData = await response.json();
+                alert(`Failed to delete post: ${errorData.error}`);
+            }
+        } catch (error) {
+            console.log(error);
+            console.error('Error deleting post: ', error);
+            alert('An error occurred');
+        }
+        
+    }
+
+    if (redirect) {
+        return <Navigate to="/" />; // Redirect to homepage after deletion
+    }
+
     if(!postInfo) return '';
 
     return (
         <div className="post-page">
-            <h1>{postInfo.title}</h1>
+            <h2>{postInfo.title}</h2>
             <time>{format(new Date(postInfo.createdAt), 'MMM d, yyyy HH:mm')}</time> 
             <div className="author">by @{postInfo.author.username}</div>
             {userInfo.id === postInfo.author._id && (
@@ -43,6 +75,14 @@ export default function PostPage() {
             </div>
 
             <div className="content" dangerouslySetInnerHTML={{__html:postInfo.content}}/>
+
+            {userInfo.id === postInfo.author._id && (
+                <div className="delete-row">
+                    <Link className="delete-button" onClick={deletePost}>
+                        Delete this post
+                    </Link>
+                </div>
+            )}
         </div>
         
     );

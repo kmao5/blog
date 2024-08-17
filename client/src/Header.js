@@ -29,22 +29,22 @@ export default function Header() {
 
     return (
         <header>
-            <Link to="/" className="logo">MyBlog</Link>
+            <Link to="/" className="logo">Living Poet's Society</Link>
             <nav>
                 {/* logged in */}
                 {username && (
                     <>
-                        <span>Hello, {username}!</span>
-                        <Link to="/create">Create new post</Link>
-                        <a onClick={logout}>Logout</a>
+                        <span className="nav-headings">Hello, {username}!</span>
+                        <Link to="/create" className="nav-headings">Create new post</Link>
+                        <a className="nav-headings" onClick={logout}>Logout</a>
                     </>
                 )}
 
                 {/* not logged in */}
                 {!username && (
                     <>
-                        <Link to="/login">Login</Link>
-                        <Link to="/register">Register</Link>
+                        <Link to="/login" className="nav-headings">Login</Link>
+                        <Link to="/register" className="nav-headings">Register</Link>
                     </>
                 )}
             </nav>
