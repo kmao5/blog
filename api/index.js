@@ -18,13 +18,7 @@ const secret = 'asdkjfahs24kjow3w3yreury2ekrjsghlr'; // for jwt (login)
 
 // allows server to be accessible by other origins (browser domains)
 // also saves cookie as credentials
-app.use(cors(
-    {
-        credentials: true, 
-        origin:'https://blog-c3k3b4c0n-kmao5s-projects.vercel.app/',
-        methods: ["POST", "GET"]
-    }
-)); 
+app.use(cors({credentials: true, origin:'http://localhost:3000'})); 
 
 app.use(express.json()); // parse incoming requests with json payload
 app.use(cookieParser());
@@ -220,6 +214,7 @@ app.delete('/post/:id', async (request, response) => {
 });
 
 app.listen(4000);
+module.exports = app;
 
 // KX5hLzFSqjcVhuS2
 
