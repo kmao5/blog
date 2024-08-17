@@ -18,7 +18,13 @@ const secret = 'asdkjfahs24kjow3w3yreury2ekrjsghlr'; // for jwt (login)
 
 // allows server to be accessible by other origins (browser domains)
 // also saves cookie as credentials
-app.use(cors({credentials: true, origin:'http://localhost:3000'})); 
+app.use(cors(
+    {
+        credentials: true, 
+        origin:'https://blog-c3k3b4c0n-kmao5s-projects.vercel.app/',
+        methods: ["POST", "GET"]
+    }
+)); 
 
 app.use(express.json()); // parse incoming requests with json payload
 app.use(cookieParser());
@@ -132,38 +138,6 @@ app.get('/post/:id', async (request, response) => {
 });
 
 // PUT to update post
-// app.put('/post', uploadMiddleware.single('file'), async (request, response) => {
-//     let newPath = null;
-//     if(request.file) {
-//         const {originalname, path} = request.file;
-//         const parts = originalname.split('.');
-//         const ext = parts[parts.length - 1]; // .png, .jpeg, etc
-//         newPath = path+'.'+ext;
-//         fs.renameSync(path, newPath);
-//     }
-
-//     const {token} = request.cookies;
-//     jwt.verify(token, secret, {}, async (err, info) => {
-//         if(err) throw err;
-//         const {id, title, summary, content} = request.body;
-//         const postDoc = await Post.findById(id);
-        
-//         const isAuthor  = JSON.stringify(postDoc.author) === JSON.stringify(info.id);
-//         if (!isAuthor) {
-//             return response.status(400).json('You cannot edit. You are not the author.')
-//         }
-        
-//         await postDoc.update({
-//             title, 
-//             summary, 
-//             content,
-//             cover: newPath ? newPath : postDoc.cover,
-//         });
-
-//         response.json(postDoc);
-//     });
-// });
-
 app.put('/post', uploadMiddleware.single('file'), async (req, res) => {
     let newPath = null;
     if (req.file) {
