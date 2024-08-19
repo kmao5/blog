@@ -10,7 +10,7 @@ export default function LoginPage() {
 
     async function login(e) {
         e.preventDefault();
-        const response = await fetch('https://blog-api-theta-blue.vercel.app/login', {
+        const response = await fetch('https://blog-api-tdbm.onrender.com/login', {
             method: 'POST',
             body: JSON.stringify({username, password}),
             headers: {'Content-Type': 'application/json'},

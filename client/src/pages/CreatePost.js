@@ -20,7 +20,7 @@ export default function CreatePost() {
 
 
         // send fetch request to endpoint
-        const response = await fetch('https://blog-api-theta-blue.vercel.app/post', {
+        const response = await fetch('https://blog-api-tdbm.onrender.com/post', {
             method: 'POST',
             body: data,
             credentials: 'include',

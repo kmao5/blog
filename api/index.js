@@ -15,20 +15,22 @@ require('dotenv').config();
 const port = process.env.PORT;
 
 const salt = bcrypt.genSaltSync(10); // for registering
+require('dotenv').config();
 const secret = process.env.SECRET_KEY; // for jwt (login)
 
 // MIDDLEWARE
 
 // allows server to be accessible by other origins (browser domains)
 // also saves cookie as credentials
-app.use(cors({credentials: true, origin:'https://blog-rho-lemon-59.vercel.app/'})); 
+app.use(cors({credentials: true, origin:'http://localhost:3000'})); 
 
 app.use(express.json()); // parse incoming requests with json payload
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads')); // to add images to upload
 
 // connect to mongoose database
-mongoose.connect(process.env.MONGODB_URI)
+require('dotenv').config();
+mongoose.connect(process.env.MONGO_URL)
 
 app.get('/', (request, response) => {
     response.send('Hello World');
@@ -218,8 +220,3 @@ app.delete('/post/:id', async (request, response) => {
 
 app.listen(port);
 module.exports = app;
-
-// KX5hLzFSqjcVhuS2
-
-// npm install mongodb
-// mongodb+srv://blog:KX5hLzFSqjcVhuS2@cluster0.7zxjwgi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
