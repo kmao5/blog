@@ -11,8 +11,12 @@ const multer = require('multer'); // used to upload file
 const uploadMiddleware = multer({ dest: 'uploads/'});
 const fs = require('fs'); // rename file
 
+require('dotenv').config();
+const port = process.env.PORT;
+
 const salt = bcrypt.genSaltSync(10); // for registering
-const secret = 'asdkjfahs24kjow3w3yreury2ekrjsghlr'; // for jwt (login)
+require('dotenv').config();
+const secret = process.env.SECRET_KEY; // for jwt (login)
 
 // MIDDLEWARE
 
@@ -25,7 +29,8 @@ app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads')); // to add images to upload
 
 // connect to mongoose database
-mongoose.connect('mongodb+srv://blog:KX5hLzFSqjcVhuS2@cluster0.7zxjwgi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+require('dotenv').config();
+mongoose.connect(process.env.MONGO_URL)
 
 app.get('/', (request, response) => {
     response.send('Hello World');
@@ -213,7 +218,7 @@ app.delete('/post/:id', async (request, response) => {
     });
 });
 
-app.listen(4000);
+app.listen(port);
 module.exports = app;
 
 // KX5hLzFSqjcVhuS2
