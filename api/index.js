@@ -21,7 +21,7 @@ const secret = process.env.SECRET_KEY; // for jwt (login)
 
 // allows server to be accessible by other origins (browser domains)
 // also saves cookie as credentials
-app.use(cors({credentials: true, origin:'https://livingpoetssociety-7zfqum85v-kmao5s-projects.vercel.app/'})); 
+app.use(cors({credentials: true, origin:'http://localhost:3000'})); 
 
 app.use(express.json()); // parse incoming requests with json payload
 app.use(cookieParser());

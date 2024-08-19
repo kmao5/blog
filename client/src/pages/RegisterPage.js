@@ -8,7 +8,7 @@ export default function RegisterPage() {
         e.preventDefault(); // will not try to redirect from this page
 
         // send POST request
-       const response = await fetch('https://blog-api-tdbm.onrender.com/register', {
+       const response = await fetch('https://blog-api-theta-blue.vercel.app/register', {
             method: 'POST',
             body: JSON.stringify({username, password}),
             headers: {'Content-Type': 'application/json'},

@@ -6,7 +6,7 @@ export default function HomePage() {
 
     // GET is default so don't need to define function
     useEffect(() => {
-        fetch('https://blog-api-tdbm.onrender.com/post').then(response => {
+        fetch('https://blog-api-theta-blue.vercel.app/post').then(response => {
             response.json().then(posts => {
                 setPosts(posts);
             });
