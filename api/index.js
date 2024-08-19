@@ -216,7 +216,7 @@ app.delete('/post/:id', async (request, response) => {
     });
 });
 
-// app.listen(port);
+app.listen(port);
 module.exports = app;
 
 // KX5hLzFSqjcVhuS2
