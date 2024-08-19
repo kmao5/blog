@@ -24,10 +24,6 @@ export default function HomePage() {
                 <Post key={post._id} {...post} /> // pass all properites from Post
             ))}
 
-            {/* <Routes>
-                <Route path="/post/:id" element={<PostPage removePostFromState={removePostFromState} />} />
-            </Routes> */}
-
         </>
     );
 }
