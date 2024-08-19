@@ -30,7 +30,7 @@ app.use('/uploads', express.static(__dirname + '/uploads')); // to add images to
 
 // connect to mongoose database
 require('dotenv').config();
-mongoose.connect(process.env.MONGO_URL)
+mongoose.connect(process.env.MONGODB_URI)
 
 app.get('/', (request, response) => {
     response.send('Hello World');
