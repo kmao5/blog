@@ -11,14 +11,10 @@ const multer = require('multer'); // used to upload file
 const uploadMiddleware = multer({ dest: 'uploads/'});
 const fs = require('fs'); // rename file
 
-const dotenv = require('dotenv')
-dotenv.config({path:__dirname+'/.env'});
-
 require('dotenv').config();
 const port = process.env.PORT;
 
 const salt = bcrypt.genSaltSync(10); // for registering
-require('dotenv').config();
 const secret = process.env.SECRET_KEY; // for jwt (login)
 
 // MIDDLEWARE
@@ -32,8 +28,7 @@ app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads')); // to add images to upload
 
 // connect to mongoose database
-require('dotenv').config();
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGO_URL)
 
 app.get('/', (request, response) => {
     response.send('Hello World');
