@@ -35,7 +35,6 @@ mongoose.connect(process.env.MONGODB_URI)
 app.get('/', (request, response) => {
     response.send('Hello World');
 });
-app.use('/');
 
 // create API endpoint and function to handle registering action
 app.post('/register', async (request, response) => {
@@ -52,7 +51,6 @@ app.post('/register', async (request, response) => {
         response.status(400).json(e);
     }
 })
-app.use('/register')
 
 // create API endpoint and function to handle logging in action
 app.post('/login', async (request, response) => {
@@ -79,7 +77,6 @@ app.post('/login', async (request, response) => {
         response.status(400).json('Wrong credentials.');
     }
 });
-app.use('/login')
 
 // create an API endpoint to return profile info once user has logged in
 app.get('/profile', (request, response) => {
@@ -89,13 +86,11 @@ app.get('/profile', (request, response) => {
         response.json(info);
     });
 });
-app.use('/profile')
 
 // API endpoint to "cancel" token when logging out
 app.post('/logout', (request, response) => {
     response.cookie('token', '').json('ok');
 });
-app.use('/logout')
 
 // upload file and create Post model in database
 app.post('/post', uploadMiddleware.single('file'), async (request, response) => {
@@ -123,7 +118,6 @@ app.post('/post', uploadMiddleware.single('file'), async (request, response) => 
         response.json(postDoc);
     });
 });
-app.use('/post')
 
 // to display all posts on homepage(?)
 app.get('/post', async (request, response) => {
@@ -223,7 +217,6 @@ app.delete('/post/:id', async (request, response) => {
         }
     });
 });
-app.use('/post/:id')
 
 // app.listen(port);
 module.exports = app;
