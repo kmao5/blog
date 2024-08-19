@@ -50,6 +50,7 @@ app.post('/register', async (request, response) => {
     } catch(e) {
         response.status(400).json(e);
     }
+    response.send('register is good')
 })
 
 // create API endpoint and function to handle logging in action
@@ -76,6 +77,8 @@ app.post('/login', async (request, response) => {
     } else {
         response.status(400).json('Wrong credentials.');
     }
+
+    response.send('login is good')
 });
 
 // create an API endpoint to return profile info once user has logged in
@@ -85,11 +88,13 @@ app.get('/profile', (request, response) => {
         if(err) throw err;
         response.json(info);
     });
+    response.send('profile is good')
 });
 
 // API endpoint to "cancel" token when logging out
 app.post('/logout', (request, response) => {
     response.cookie('token', '').json('ok');
+    response.send('logout is good')
 });
 
 // upload file and create Post model in database
@@ -117,6 +122,7 @@ app.post('/post', uploadMiddleware.single('file'), async (request, response) => 
 
         response.json(postDoc);
     });
+    response.send('upload file is good')
 });
 
 // to display all posts on homepage(?)
@@ -127,6 +133,7 @@ app.get('/post', async (request, response) => {
         .sort({createdAt: -1}) // descending order (most recent)
         .limit(20)
     );
+    response.send('display homepage is good')
 });
 
 // for a single post page
@@ -134,6 +141,7 @@ app.get('/post/:id', async (request, response) => {
     const {id} = request.params;
     const postDoc = await Post.findById(id).populate('author', ['username']);
     response.json(postDoc);
+    response.send('display post is good')
 });
 
 // PUT to update post
@@ -188,6 +196,8 @@ app.put('/post', uploadMiddleware.single('file'), async (req, res) => {
 
         res.json(postDoc);
     });
+
+    response.send('update post is good')
 });
 
 app.delete('/post/:id', async (request, response) => {
@@ -216,6 +226,8 @@ app.delete('/post/:id', async (request, response) => {
             response.status(500).json({error: 'Error deleting post'});
         }
     });
+
+    response.send('delete post is good')
 });
 
 app.listen(port);
