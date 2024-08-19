@@ -11,6 +11,9 @@ const multer = require('multer'); // used to upload file
 const uploadMiddleware = multer({ dest: 'uploads/'});
 const fs = require('fs'); // rename file
 
+const dotenv = require('dotenv')
+dotenv.config({path:__dirname+'/.env'});
+
 require('dotenv').config();
 const port = process.env.PORT;
 
