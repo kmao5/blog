@@ -7,7 +7,7 @@ export default function Header() {
 
     // empty dependency array means only renders one time when component is first mounted to DOM
     useEffect(() => {
-        fetch('http://localhost:4000/profile', {
+        fetch('https://blog-api-tdbm.onrender.com/profile', {
             credentials: 'include',
         }).then(response => {
             response.json().then(userInfo => {
@@ -18,7 +18,7 @@ export default function Header() {
 
     function logout() {
         // invalidate cookie / token and reset username
-        fetch('http://localhost:4000/logout', {
+        fetch('https://blog-api-tdbm.onrender.com/logout', {
             credentials: 'include',
             method: 'POST',
         });

@@ -14,7 +14,7 @@ export default function PostPage() {
     // grab info about the post when PostPage component is mounted
     useEffect(() => {
         
-        fetch(`https://localhost:4000/post/${id}`)
+        fetch(`https://blog-api-tdbm.onrender.com/post/${id}`)
             .then(response => {
                 response.json().then(postInfo => {
                     setPostInfo(postInfo);
@@ -28,7 +28,7 @@ export default function PostPage() {
         if (!confirmed) return;
 
         try {
-            const response = await fetch(`http://localhost:4000/post/${id}`, {
+            const response = await fetch(`https://blog-api-tdbm.onrender.com/post/${id}`, {
                 method: 'DELETE',
                 credentials: 'include',
             });
@@ -71,7 +71,7 @@ export default function PostPage() {
             )}
 
             <div className="image">
-                <img src={`http://localhost:4000/${postInfo.cover}`} alt="image" />
+                <img src={`https://blog-api-tdbm.onrender.com/${postInfo.cover}`} alt="image" />
             </div>
 
             <div className="content" dangerouslySetInnerHTML={{__html:postInfo.content}}/>

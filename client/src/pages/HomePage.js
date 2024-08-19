@@ -6,7 +6,7 @@ export default function HomePage() {
 
     // GET is default so don't need to define function
     useEffect(() => {
-        fetch('http://localhost:4000/post').then(response => {
+        fetch('https://blog-api-tdbm.onrender.com/post').then(response => {
             response.json().then(posts => {
                 setPosts(posts);
             });
